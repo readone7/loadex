@@ -26,4 +26,5 @@ defmodule Loadex.MixProject do
       {:tzdata, "~> 0.1.8"}
     ]
   end
+
 end
