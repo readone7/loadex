@@ -9,6 +9,10 @@ use Mix.Config
 # third-party users, it should be done in your "mix.exs" file.
 
 # You can configure your application as:
+
+  config :loadex, master_node: :"a@127.0.0.1"
+
+  config :loadex, slave_nodes: [:"b@127.0.0.1", :"c@127.0.0.1", :"d@127.0.0.1"]
 #
 #     config :loadex, key: :value
 #

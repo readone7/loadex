@@ -2,6 +2,8 @@
              [{applications,[kernel,stdlib,elixir,logger,httpoison,timex,
                              tzdata]},
               {description,"loadex"},
-              {modules,['Elixir.Loadex','Elixir.Loadex.Worker']},
+              {modules,['Elixir.Loadex','Elixir.Loadex.CLI',
+                        'Elixir.Loadex.Worker']},
               {registered,[]},
-              {vsn,"0.1.0"}]}.
+              {vsn,"0.1.0"},
+              {mod,{'Elixir.Blitzy',[]}}]}.
