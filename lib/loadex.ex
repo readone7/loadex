@@ -3,7 +3,7 @@ defmodule Loadex do
   Documentation for Loadex.
   """
   @doc """
-  Hello world.
+  run/2
 
   ## Examples
 
