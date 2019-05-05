@@ -13,7 +13,7 @@ defmodule Loadex.MixProject do
 
   # Run "mix help compile.app" to learn about applications.
   def application do
-    [ mod: {Loadex, []},
+    [
       extra_applications: [:logger, :httpoison, :timex]
     ]
   end
@@ -23,7 +23,7 @@ defmodule Loadex.MixProject do
     [
       {:httpoison, "~> 1.4"},
       {:timex, "~> 3.1"},
-      {:tzdata, "~> 0.1.8"}
+      {:tzdata, "~> 0.1.8", override: true}
     ]
   end
 
