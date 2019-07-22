@@ -11,7 +11,7 @@ defmodule Loadex.CLI do
 
     args
     |> parse_args
-    |> process_options([node|Node.list])
+    |> process_options([Node|Node.list])
   end
 
   defp parse_args(args) do
@@ -20,11 +20,8 @@ defmodule Loadex.CLI do
 
   defp process_options(options, nodes) do
     case options do
-      {[requests: n], [url], []} ->
-        perform_requests(n, url, nodes)
-
-      _ ->
-        do_help
+      {[requests: n], [url], []} -> perform_requests(n, url, nodes)
+      _ -> dohelp()
     end
   end
 
@@ -37,7 +34,7 @@ defmodule Loadex.CLI do
     nodes
     |> Enum.flat_map(fn node ->
       1..requests_per_node |> Enum.map(fn _ ->
-        Task.Supervisor.async ({Loadex.TasksSupervisor, node}, Loadex.worker, :start, [url])
+        Task.Supervisor.async({Loadex.TasksSupervisor, node}, Loadex.Worker, :start, [url])
       end)
     end)
     |> Enum.map(&Task.await(&1, :infinity))
@@ -46,13 +43,12 @@ defmodule Loadex.CLI do
   end
 
   defp parse_results(results) do
-    {successes, failures} = Enum.partition(results, fn result ->
+    {successes, _failures} = Enum.split_with(results, fn result ->
       case result do
         {:ok, _} -> true
         _        -> false
       end
     end)
-
     total_workers = Enum.count(results)
     total_success = Enum.count(successes)
     total_failure = total_workers - total_success
@@ -80,7 +76,7 @@ defmodule Loadex.CLI do
       0
     end
   end
-  defp do_help do
+  defp dohelp() do
     IO.puts """
     Usage:
     loadex -n [requests] [url]
@@ -91,6 +87,6 @@ defmodule Loadex.CLI do
     Example:
     ./loadex -n 100 https://www.google.com
     """
-    System.halt(0)
+
   end
 end

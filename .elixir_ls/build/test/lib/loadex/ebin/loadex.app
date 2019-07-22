@@ -3,7 +3,7 @@
                              tzdata]},
               {description,"loadex"},
               {modules,['Elixir.Loadex','Elixir.Loadex.CLI',
-                        'Elixir.Loadex.Worker']},
+                        'Elixir.Loadex.Supervisor','Elixir.Loadex.Worker']},
               {registered,[]},
               {vsn,"0.1.0"},
-              {mod,{'Elixir.Blitzy',[]}}]}.
+              {mod,{'Elixir.Loadex',[]}}]}.
